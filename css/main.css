@@ -2452,7 +2452,7 @@ header .header-logo a {
 #portfolio .bricks-wrapper .brick {
 	float: left;
 	width: 50%;
-	padding: 0;
+	padding: 10px;
 	margin: 0;
 }
 
