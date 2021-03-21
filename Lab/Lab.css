@@ -13,6 +13,13 @@
 button{
     width: 100px;
 }
+canvas{
+    position: absolute;
+    top: 200px;
+    border: black 2px solid;
+    width: 400px;
+    height: 400px;
+}
 
 .center {
     margin: 0;
