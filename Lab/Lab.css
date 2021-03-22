@@ -6,6 +6,36 @@
     height: 400px;
 }
 
+#numbox{
+    position: absolute;
+    top: 200px;
+    border: black 2px solid;
+    width: 400px;
+    height: 400px;
+    
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.nums{
+    padding: 4px;
+    margin: 10px 30px;
+    font-size: 1.5rem; 
+    display: inline-block;
+}
+
+.smallNum{
+    padding-top: 100px;
+}
+
+.medNum{
+    padding-top: 100px;
+}
+.largeNum{
+    padding-top: 0px;
+}
+
 #inst{
     text-align: center;
 }

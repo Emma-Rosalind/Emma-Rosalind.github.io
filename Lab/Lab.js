@@ -38,7 +38,7 @@ function setGraph(n){
     }
 
     for(var i = 0; i < n ; i++){
-        raw += " <tr onclick='submitGraph("+ arr[i] +")'><td style='--size:0."+arr[i]+";'></td></tr> ";
+        raw += " <tr ><td onclick='submitGraph("+ arr[i] +")' style='--size:0."+arr[i]+";'></td></tr> ";
         
         if(arr[i] > max){
             max = arr[i];
@@ -75,7 +75,7 @@ function submitGraph(num){
         }else{
             SetDone = true;
             cur = 0;
-            document.getElementById("bar-chart").classList.add("hidden");
+            document.getElementById("box").classList.add("hidden");
             document.getElementById("numbox").classList.remove("hidden");
             setNumbers(n[cur]);
         }
@@ -87,14 +87,43 @@ function submitGraph(num){
 // print something to user
 function Done(){
     document.getElementById("box").innerHTML = "DONE";
+    alert("both rounds done");
 }
 
 //puts numbers in the box
 // n - number of numbers
 function setNumbers(n){
-    //get numbers
+    var content = document.getElementById("numbox");
+    var raw = "";
+    var margin = 0;
 
-    //put in posisions 
+    //set margin based on # to print
+    if(n == 3){
+        content.classList.add("smallNum");
+    }else if (n == 5){
+        //content.classList.add("medNum");  //needs more work for formatting
+    }else if (n == 25){
+        content.classList.add("largeNum");
+        content.classList.remove("smallNum");
+    }
+
+
+    //unique random numbers
+    var arr = [];
+    while(arr.length < n){
+        var r = Math.floor(Math.random() * 99) + 1;
+        if(arr.indexOf(r) === -1) arr.push(r);
+    }
+
+    for(var i = 0; i < n ; i++){
+        raw += "<span class='nums' onclick='submitNums("+ arr[i] +")'> "+ arr[i]+"</span> ";
+        
+        if(arr[i] > max){
+            max = arr[i];
+        }
+    }
+    content.innerHTML = raw;
+    timerStart = new Date().getTime;
 }
 
 //puts a graph in the box
@@ -124,6 +153,7 @@ function submitNums(num){
         }else{
             SetDone = true;
             cur = 0;
+            document.getElementById("box").classList.remove("hidden");
             document.getElementById("bar-chart").classList.remove("hidden");
             document.getElementById("numbox").classList.add("hidden");
             setGraph(n[cur]);
