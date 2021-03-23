@@ -7,6 +7,8 @@ var n = [3,5,9,25];
 var cur = 0;
 var repeats = 2;   //can change at will
 var repeatDone = 0;
+var trials = [];
+var trial = {};
 
 //Sets up on go press
 function Start(){
@@ -37,27 +39,37 @@ function setGraph(n){
         if(arr.indexOf(r) === -1) arr.push(r);
     }
 
+    var values = ``;
     for(var i = 0; i < n ; i++){
         raw += " <tr ><td onclick='submitGraph("+ arr[i] +")' style='--size:0."+arr[i]+";'></td></tr> ";
-        
+        values += `${arr[i].toString()},`;
         if(arr[i] > max){
             max = arr[i];
         }
     }
+    trial["repetition"] = repeatDone;
+    trial["# values"] = n;
+    trial["values"] = values;
     content.innerHTML = raw;
-    timerStart = new Date().getTime;
+    timerStart = Date.now();
 }
 
 //puts a graph in the box
 // n - number of colums
 function submitGraph(num){
     //stop timer and save
-    var time = new Date().getTime - timerStart;
+    var time = Date.now() - timerStart;
     if(num == max){
         console.log("correct");
     }else{                          //TODO: do something with this info
         console.log("wrong");
     }
+
+    //collect data
+    trial["method"] = "graph";
+    trial["correct answer"] = max;
+    trial["answer"] = num;
+    trial["time (ms)"] = time;
 
     //do stuff
     document.getElementById("bar-body").innerHTML="";
@@ -68,6 +80,8 @@ function submitGraph(num){
         cur++;
         repeatDone = 0;
     }
+    trials.push(trial);
+    trial = [];
     //are we done all graphs
     if(cur == n.length){
         if(SetDone){
@@ -86,7 +100,25 @@ function submitGraph(num){
 
 // print something to user
 function Done(){
-    document.getElementById("box").innerHTML = "DONE";
+    document.getElementById("numbox").classList.add("hidden");
+    var content = document.getElementById("left-col");
+    
+    let raw = "<table border='1'><tr>";
+    for(const key in trials[0]){
+        raw += "<th border='1'>"+key+"</th>";
+    }
+    raw += "</tr>";
+   // raw = " <tr><td style='--size:0.""'></td></tr> ";
+    for(let trialIndex=0; trialIndex<trials.length; trialIndex++){
+        trial = trials[trialIndex];
+        raw += "<tr border='1'>";
+        for(const key in trial){
+            raw += "<td border='1'>"+trial[key].toString()+"</td>";
+        }
+        raw += "</tr>";
+    }
+    raw += "</table>";
+    content.innerHTML = raw;
     alert("both rounds done");
 }
 
@@ -115,27 +147,37 @@ function setNumbers(n){
         if(arr.indexOf(r) === -1) arr.push(r);
     }
 
+    var values = ``;
     for(var i = 0; i < n ; i++){
         raw += "<span class='nums' onclick='submitNums("+ arr[i] +")'> "+ arr[i]+"</span> ";
-        
+        values += `${arr[i].toString()},`;
         if(arr[i] > max){
             max = arr[i];
         }
     }
+    trial["repetition"] = repeatDone;
+    trial["# values"] = n;
+    trial["values"] = values;
     content.innerHTML = raw;
-    timerStart = new Date().getTime;
+    timerStart = Date.now();
 }
 
 //puts a graph in the box
 // n - number of colums
 function submitNums(num){
     //stop timer and save
-    var time = new Date().getTime - timerStart;
+    var time = Date.now() - timerStart;
     if(num == max){
         console.log("correct");
     }else{                          //TODO: do something with this info
         console.log("wrong");
     }
+
+    //collect data
+    trial["method"] = "numbers";
+    trial["correct answer"] = max;
+    trial["answer"] = num;
+    trial["time (ms)"] = time;
 
     //do stuff
     document.getElementById("numbox").innerHTML="";
@@ -146,6 +188,8 @@ function submitNums(num){
         cur++;
         repeatDone = 0;
     }
+    trials.push(trial);
+    trial = [];
     //are we done all graphs
     if(cur == n.length){
         if(SetDone){
