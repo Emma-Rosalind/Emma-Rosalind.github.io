@@ -41,7 +41,14 @@ function setGraph(n){
 
     var values = ``;
     for(var i = 0; i < n ; i++){
-        raw += " <tr ><td onclick='submitGraph("+ arr[i] +")' style='--size:0."+arr[i]+";'></td></tr> ";
+        /*var value = Math.random() * 0xFF | 0;
+        var grayscale = (value << 16) | (value << 8) | value;
+        var randomColor = '#' + grayscale.toString(16);
+        while(randomColor.length < 7){
+            randomColor = randomColor + "0";
+        }*/
+        const randomColor = "#dddddd";
+        raw += " <tr ><td onclick='submitGraph("+ arr[i] +")' style='--size:0."+arr[i]+"; background:" + randomColor + "; outline: 1px solid black; '></td></tr> ";
         values += `${arr[i].toString()},`;
         if(arr[i] > max){
             max = arr[i];
@@ -59,11 +66,6 @@ function setGraph(n){
 function submitGraph(num){
     //stop timer and save
     var time = Date.now() - timerStart;
-    if(num == max){
-        console.log("correct");
-    }else{                          //TODO: do something with this info
-        console.log("wrong");
-    }
 
     //collect data
     trial["method"] = "graph";
@@ -101,6 +103,7 @@ function submitGraph(num){
 // print something to user
 function Done(){
     document.getElementById("numbox").classList.add("hidden");
+    document.getElementById("box").classList.add("hidden");
     var content = document.getElementById("left-col");
     
     let raw = "<table border='1'><tr>";
@@ -119,7 +122,9 @@ function Done(){
     }
     raw += "</table>";
     content.innerHTML = raw;
-    alert("both rounds done");
+
+    var text = "Your number is BLANK please complete this survey - <a href='https://forms.gle/GzMayYFnBEfzc1X17'> here </a> ."
+    document.getElementById("inst").innerHTML = text;
 }
 
 //puts numbers in the box
@@ -133,7 +138,7 @@ function setNumbers(n){
     if(n == 3){
         content.classList.add("smallNum");
     }else if (n == 5){
-        //content.classList.add("medNum");  //needs more work for formatting
+        //content.classList.add("medNum");  
     }else if (n == 25){
         content.classList.add("largeNum");
         content.classList.remove("smallNum");
@@ -167,11 +172,6 @@ function setNumbers(n){
 function submitNums(num){
     //stop timer and save
     var time = Date.now() - timerStart;
-    if(num == max){
-        console.log("correct");
-    }else{                          //TODO: do something with this info
-        console.log("wrong");
-    }
 
     //collect data
     trial["method"] = "numbers";
