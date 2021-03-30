@@ -143,9 +143,11 @@ function Done(){
     }
     raw += "</table></div>";
     content.innerHTML = raw;
+    document.getElementById("inst").classList.remove("d-flex");
+    document.getElementById("inst").classList.remove("justify-content-center");
 
-    var text = `<div class="row">Your number is ${id} please complete this survey <button onclick="openSurvey()">here</button> .</div><br></br>`
-    text += "<div class='row'>Please copy the data below and paste it in the next available row <button onclick='openSpreadsheet()'>here</button> .</div>"
+    var text = `<div >Your ID is ${id} please complete our survey. <br> <button class="btn btn-light" onclick="openSurvey()">Survey</button> </div> <br>`
+    text += "<div '>Then copy the data below and paste it (right click > paste special > values only) <br> in the next available row of the linked spreadsheet. <br> <button class='btn btn-light' onclick='openSpreadsheet()'>Spreadsheet</button> </div>"
     document.getElementById("inst").innerHTML = text;
 }
 

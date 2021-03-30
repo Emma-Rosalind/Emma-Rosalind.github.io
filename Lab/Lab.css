@@ -1,10 +1,14 @@
+button{
+    width: 200px;
+}
+
 #left-col{
     text-align: center
 }  
 #inst button{
-    background-color: white;
-    color: black;
     text-align: center;
+    width: 200px;
+    border: 1px solid lightslategray;
     font-size: 16px;
 }
 #box{
@@ -47,6 +51,8 @@
 
 #inst{
     text-align: center;
+    font-size: 1em;
+    font-family: Lucida Console;
 }
 
 button{
