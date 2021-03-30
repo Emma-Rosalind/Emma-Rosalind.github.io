@@ -1,17 +1,22 @@
 //general variables
 var timerStart = 0;
 var max = 0; //- max of current box
+var min = 99;
 var average = 0;
 var SetDone = false;
 var n = [3,5,9,25];
 var cur = 0;
-var repeats = 2;   //can change at will
+var repeats = 4;   //can change at will
 var repeatDone = 0;
 var trials = [];
 var trial = {};
+var id = "";
 
 //Sets up on go press
 function Start(){
+    //set id
+    id = Date.now().toString().substring(8); 
+ 
     document.getElementById("go").classList.add("hidden");
     //see what they are starting
     
@@ -53,8 +58,15 @@ function setGraph(n){
         if(arr[i] > max){
             max = arr[i];
         }
+        if(arr[i] < min){
+            min = arr[i];
+        }
     }
-    trial["repetition"] = repeatDone;
+
+    const repetition = "n" + n.toString() + "-" + repeatDone;
+
+    trial["id"] = id;
+    trial["repetition"] = repetition;
     trial["# values"] = n;
     trial["values"] = values;
     content.innerHTML = raw;
@@ -67,16 +79,21 @@ function submitGraph(num){
     //stop timer and save
     var time = Date.now() - timerStart;
 
+    //calculate error
+    const error = calculateError(num, max, min, max);
+
     //collect data
     trial["method"] = "graph";
     trial["correct answer"] = max;
-    trial["answer"] = num;
+    trial["selected"] = num;
+    trial["error"] = error;
     trial["time (ms)"] = time;
 
     //do stuff
     document.getElementById("bar-body").innerHTML="";
     repeatDone++;
     max = 0;
+    min = 99;
     //check and call next graph
     if(repeatDone == repeats){
         cur++;
@@ -100,13 +117,17 @@ function submitGraph(num){
     }
 }
 
+function calculateError(selected, correct, min, max){
+    return (Math.abs(correct - selected)/(max - min)).toFixed(5);
+}
+
 // print something to user
 function Done(){
     document.getElementById("numbox").classList.add("hidden");
     document.getElementById("box").classList.add("hidden");
     var content = document.getElementById("left-col");
     
-    let raw = "<table border='1'><tr>";
+    let raw = "<div><table border='1'><tr>";
     for(const key in trials[0]){
         raw += "<th border='1'>"+key+"</th>";
     }
@@ -120,11 +141,22 @@ function Done(){
         }
         raw += "</tr>";
     }
-    raw += "</table>";
+    raw += "</table></div>";
     content.innerHTML = raw;
 
-    var text = "Your number is BLANK please complete this survey - <a href='https://forms.gle/GzMayYFnBEfzc1X17'> here </a> ."
+    var text = `<div class="row">Your number is ${id} please complete this survey <button onclick="openSurvey()">here</button> .</div><br></br>`
+    text += "<div class='row'>Please copy the data below and paste it in the next available row <button onclick='openSpreadsheet()'>here</button> .</div>"
     document.getElementById("inst").innerHTML = text;
+}
+
+function openSurvey() {
+    window.open(
+      "https://forms.gle/GzMayYFnBEfzc1X17", "_blank");
+}
+
+function openSpreadsheet() {
+    window.open(
+      "https://docs.google.com/spreadsheets/d/14UTh4oD4H6qyE2y6nXBJnJ-ydEif6HWxcGzEmNFnS-g/edit#gid=0", "_blank");
 }
 
 //puts numbers in the box
@@ -159,8 +191,15 @@ function setNumbers(n){
         if(arr[i] > max){
             max = arr[i];
         }
+        if(arr[i] < min){
+            min = arr[i];
+        }
     }
-    trial["repetition"] = repeatDone;
+
+    const repetition = "n" + n.toString() + "-" + repeatDone;
+
+    trial["id"] = id;
+    trial["repetition"] = repetition;
     trial["# values"] = n;
     trial["values"] = values;
     content.innerHTML = raw;
@@ -173,16 +212,21 @@ function submitNums(num){
     //stop timer and save
     var time = Date.now() - timerStart;
 
+    //calculate error
+    const error = calculateError(num, max, min, max);
+
     //collect data
     trial["method"] = "numbers";
     trial["correct answer"] = max;
-    trial["answer"] = num;
+    trial["selected"] = num;
+    trial["error"] = error;
     trial["time (ms)"] = time;
 
     //do stuff
     document.getElementById("numbox").innerHTML="";
     repeatDone++;
     max = 0;
+    min = 99;
     //check and call next graph
     if(repeatDone == repeats){
         cur++;
