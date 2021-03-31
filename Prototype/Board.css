@@ -1,0 +1,15 @@
+#menu{
+    border: black 1px solid;
+}
+
+#board{
+    border: black 1px solid;
+}
+
+html,body{
+    height:100%;
+}
+
+.flex-fill {
+    flex:1;
+}
