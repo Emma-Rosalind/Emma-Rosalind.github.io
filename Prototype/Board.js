@@ -27,3 +27,12 @@ document.getElementById('picField').onchange = function (evt) {
     }
 }
 });
+
+
+function clear(){
+    document.querySelectorAll('.box').forEach(e => e.remove());
+}
+
+function changeBackground(){
+    
+}

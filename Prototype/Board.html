@@ -27,11 +27,11 @@ function init() {
       <span></span>
       <span></span>
       <div class="menu">
-        <li><a href="#">Background</a></li>
+        <li><a data-toggle="modal" data-target="#backgroundModal" href="#">Background</a></li>
         <li><a  data-toggle="modal" data-target="#exampleModal" href="#">Photo</a></li>
         <li><a href="#">Drawing</a></li>
         <li><a href="#">Export</a></li>
-        <li><a onclick="clear()" href="#">Clear</a></li>
+        <li><a href="javascript:clear()">Clear</a></li>
       </div>
   </div>
   
@@ -64,6 +64,61 @@ function init() {
     </div>
   </div>
 </div>
+
+
+  <!-- Modal for background selection-->
+  <div class="modal fade" id="backgroundModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Change Background</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       <br>
+
+          <div class="row"> 
+            <div class="col-4">
+              <img class= "Backgroundicon" >
+              <br>Blank
+            </div>
+            <div class="col-4">
+              <img class= "Backgroundicon" src="images/grid.jpg">
+              <br>Grid
+            </div>
+            <div class="col-4">
+              <img class= "Backgroundicon" src="images/3.PNG">
+              <br>3 Columns
+            </div>
+          </div>
+
+          <div class="row"> 
+            <div class="col-4">
+              <img class= "Backgroundicon" src="images/4.PNG">
+               <br>4 Columns 
+            </div>
+            <div class="col-4">
+              <img class= "Backgroundicon" src="images/squares.PNG">
+               <br>4 Corners
+            </div>
+            <div class="col-4">
+              <img class= "Backgroundicon" src="images/upload.PNG">
+              <br>Upload 
+           </div>
+          </div>
+
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
