@@ -21,23 +21,29 @@ function init() {
 
 </head>
 <body>
-    <div id= "menu" class="row">
-       
-        <div class = "title">Prototype Name </div>
-        &nbsp; &nbsp; &nbsp;
-        <img src="images\back.png" alt="background link" class= "icon">
-        <img data-toggle="modal" data-target="#exampleModal" src="images\images.png" alt="image link" class= "icon">
-        <img src="images\line.png" alt="draw link" class= "icon">
-        <img src="images\duplicate.png" alt="export link" class= "icon">
-      
-    </div>
 
+  <div class="nav">
+    <input type="checkbox">
+      <span></span>
+      <span></span>
+      <div class="menu">
+        <li><a href="#">Background</a></li>
+        <li><a  data-toggle="modal" data-target="#exampleModal" href="#">Photo</a></li>
+        <li><a href="#">Drawing</a></li>
+        <li><a href="#">Export</a></li>
+        <li><a onclick="clear()" href="#">Clear</a></li>
+      </div>
+  </div>
+  
+ 
+
+  <!-- dragabble generated here-->
     <div id ="board">
-      <div  class="box makeMeDraggable"> draggable</div>
+      
 
     </div>
 
-    <!-- Modal -->
+    <!-- Modal for image upload-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -58,6 +64,7 @@ function init() {
     </div>
   </div>
 </div>
+
 
 
 

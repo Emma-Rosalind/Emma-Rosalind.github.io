@@ -21,6 +21,7 @@ $(document).ready(function(){
 document.getElementById('picField').onchange = function (evt) {
     if (this.files && this.files[0]) {
         a = document.createElement('img');
+        a.setAttribute("class", "image");
         a.src = URL.createObjectURL(this.files[0]); // set src to blob url
         element = a;
     }
