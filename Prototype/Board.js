@@ -6,16 +6,36 @@ function createImage(){
     g = document.createElement('div'); 
     g.setAttribute("class", "box makeMeDraggable ui-draggable");
     g.setAttribute("style", "top: 0px;");
+    
 
     $('.makeMeDraggable').draggable(); 
     document.getElementById("board").append(g);
     init();
-    boxCount++;
 
+    //photo
     g.append(element);
+    element.setAttribute("onmouseover", "hover('toolBox"+ boxCount+"')");
+    element.setAttribute("onmouseout", "hover('toolBox"+ boxCount+"')");
     document.getElementById("picField").value = "";
 
+    //tools 
+    var div = document.createElement('div');
+    div.setAttribute("class", "toolBox hidden");
+    div.setAttribute("id", "toolBox" + boxCount);
+    div.innerHTML = "<img class= 'tool' src = 'images/can.png'>" + 
+    "<img class= 'tool' src = 'images/chat.png'>" + "<img class= 'tool' src = 'images/size.png'>";
+    g.append(div);
+
+    boxCount++;
+
 }
+
+function hover(id){
+    console.log("here");
+    $( "#" + id ).toggleClass( "hidden");
+}
+
+
 
 
 //get url of uploaded file
