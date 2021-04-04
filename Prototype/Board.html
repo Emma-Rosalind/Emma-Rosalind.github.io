@@ -38,8 +38,8 @@ function init() {
  
 
   <!-- dragabble generated here-->
-    <div id ="board">
-      
+    <div id ="board"> 
+       <img id ="backgroundImage" scr="">
 
     </div>
 
@@ -80,32 +80,37 @@ function init() {
        <br>
 
           <div class="row"> 
-            <div class="col-4">
+            <div class="col-4" onclick="background(0)">
               <img class= "Backgroundicon" >
               <br>Blank
             </div>
-            <div class="col-4">
+            <div class="col-4" onclick="background(1)">
               <img class= "Backgroundicon" src="images/grid.jpg">
               <br>Grid
             </div>
-            <div class="col-4">
+            <div class="col-4" onclick="background(2)">
               <img class= "Backgroundicon" src="images/3.PNG">
               <br>3 Columns
             </div>
           </div>
 
           <div class="row"> 
-            <div class="col-4">
+            <div class="col-4" onclick="background(3)">
               <img class= "Backgroundicon" src="images/4.PNG">
                <br>4 Columns 
             </div>
-            <div class="col-4">
+            <div class="col-4" onclick="background(4)">
               <img class= "Backgroundicon" src="images/squares.PNG">
                <br>4 Corners
             </div>
-            <div class="col-4">
-              <img class= "Backgroundicon" src="images/upload.PNG">
-              <br>Upload 
+            <div class="col-4" onclick="background(5)">
+              <!--<img class= "Backgroundicon" src="images/upload.PNG"> -->
+              <div class= "Backgroundicon" >
+                &nbsp;
+                <input type='file' name="picback" id="picback"/>
+              </div>
+              
+              Upload 
            </div>
           </div>
 
