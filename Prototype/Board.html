@@ -1,21 +1,22 @@
 <!doctype html>
 <html lang="en">
 <head>
-
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="Board.css" >
-<script type="text/javascript" src="Board.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="Board.css" >
+  <script type="text/javascript" src="Board.js"></script>
 
 <script type="text/javascript">
 $( init );
 
 function init() {
   $('.makeMeDraggable').draggable();
+
 }
 </script>
 
@@ -28,14 +29,14 @@ function init() {
       <span></span>
       <div class="menu">
         <li><a data-toggle="modal" data-target="#backgroundModal" href="#">Background</a></li>
-        <li><a  data-toggle="modal" data-target="#exampleModal" href="#">Photo</a></li>
-        <li><a href="#">Drawing</a></li>
+        <li><a data-toggle="modal" data-target="#exampleModal" href="#">Photo</a></li>
+        <li><a data-toggle="modal" data-target="#drawModal" href="#">Drawing</a></li>
         <li><a href="#">Export</a></li>
         <li><a href="javascript:clear()">Clear</a></li>
       </div>
   </div>
-  
- 
+
+
 
   <!-- dragabble generated here-->
     <div id ="board"> 
@@ -43,27 +44,61 @@ function init() {
 
     </div>
 
-    <!-- Modal for image upload-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Select an image from your device <br>
-        <input type='file' name="picField" id="picField"/>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button onClick= "createImage()" type="button" data-dismiss="modal" class="btn btn-primary">Go</button>
+  <!-- Modal for drawing-->
+  <div class="modal fade" id="drawModal" tabindex="-1" role="dialog" aria-labelledby="drawModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="drawModalLabel">Draw</h5>
+        </div>
+        <div class="type">
+          <input type="radio" name="pen-type" id="pen-pencil" checked>
+          <label for="pen-pencil">
+            <i class='fa fa-pencil'></i>
+          </label>
+          <input type="radio" name="pen-type" id="pen-brush">
+          <label for="pen-brush">
+            <i class='fa fa-paint-brush'></i>
+          </label>
+        </div>
+        <div class="size">
+          <label for="pen-size">Size</label>
+          <input type="range" id="pen-size" min="1" max="50">
+        </div>
+        <div class="color">
+          <label for="pen-color">Color</label>
+          <input type="color" id="pen-color" value="#000">
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<!--          <button onClick= "mousedragged()" type="button" data-dismiss="modal" class="btn btn-primary">Go</button>-->
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Modal for image upload-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Select an image from your device <br>
+          <input type='file' name="picField" id="picField"/>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button onClick= "createImage()" type="button" data-dismiss="modal" class="btn btn-primary">Go</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- Modal for background selection-->
@@ -125,8 +160,8 @@ function init() {
     </div>
   </div>
 
-
-
+<!--  <script type="text/javascript" src="scribble.js"></script>-->
+  <script data-cfasync='false' src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.6/p5.min.js"></script>
 
 </body>
 </html>
