@@ -31,7 +31,6 @@ function createImage(){
 }
 
 function hover(id){
-    console.log("here");
     $( "#" + id ).toggleClass( "hidden");
 }
 
