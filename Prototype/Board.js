@@ -23,7 +23,7 @@ function createImage(){
     div.setAttribute("class", "toolBox hidden");
     div.setAttribute("id", "toolBox" + boxCount);
     div.innerHTML = "<img class= 'tool' src = 'images/can.png'>" + 
-    "<img class= 'tool' src = 'images/chat.png'>" + "<img class= 'tool' src = 'images/size.png'>";
+    "<img class= 'tool' src = 'images/chat.png'>" + "<img class= 'tool' src = 'images/size.png'>"+ "<img class= 'tool' src = 'images/like.png'>";
     g.append(div);
 
     boxCount++;
