@@ -5,7 +5,7 @@ function createImage(){
   
     g = document.createElement('div'); 
     g.setAttribute("class", "box makeMeDraggable ui-draggable");
-    g.setAttribute("style", "top: 0px;");
+    g.setAttribute("style", "top: -900px;left: 80px");
     
 
     $('.makeMeDraggable').draggable(); 
@@ -33,9 +33,6 @@ function createImage(){
 function hover(id){
     $( "#" + id ).toggleClass( "hidden");
 }
-
-
-
 
 //get url of uploaded file
 $(document).ready(function(){
@@ -84,27 +81,60 @@ $(document).ready(function(){
     }
     });
 
-function _(selector) {
-    return document.querySelector(selector);
+const canvas = document.getElementById("mycanvas");
+var ctx = canvas.getContext("2d");
+var is_drawing = false;
+function stop() {
+    is_drawing = false;
 }
-// function setup(){
-//     let canvas = createCanvas(650, 600);
-//     canvas.parent("canvas-wrapper");
-//     background(200);
-// }
-function mouseDragged(){
-    // let canvas = document.getElementById("board");
-    // var ctx = canvas.getContext("2d");
-    // ctx.fillStyle = "#FF0000";
-    // ctx.fillRect(0, 0, 150, 75);
-    let type = _("#pen-pencil").checked?"pencil":"brush";
-    let size = parseInt(_("#pen-size").value);
-    let color = _("#pen-color").value;
-    fill(color);
-    stroke(color);
-    if(type == "pencil"){
-        line(pmouseX, pmouseY, mouseX, mouseY);
-    } else {
-        ellipse(mouseX, mouseY, size, size);
+
+function start() {
+    is_drawing = true;
+    ctx.beginPath();
+    ctx.moveTo(event.clientX-canvas.offsetLeft, event.clientY-canvas.offsetTop);
+    ctx.stroke();
+}
+
+function draw_line() {
+    if (is_drawing) {
+        ctx.lineTo(event.clientX-canvas.offsetLeft, event.clientY-canvas.offsetTop);
+        ctx.strokeStyle = "#FF0000";
+        ctx.lineWidth = 1;
+        ctx.lineJoin = "round";
+        ctx.stroke();
     }
 }
+function draw_on_canvas() {
+    w = canvas.width;
+    h = canvas.height;
+    ctx.beginPath();
+    // ctx.moveTo(event.clientX-canvas.offsetLeft, event.clientY-canvas.offsetTop);
+    for (let y = 10; y < 100; y += 10) {
+        ctx.moveTo(10, y);
+    ctx.lineTo(90, y);
+    }
+    ctx.stroke();
+    canvas.addEventListener('mousedown', start, false);
+    canvas.addEventListener("mousemove", draw_line, false);
+    canvas.addEventListener("mouseup", stop, false)
+}
+
+
+
+//
+// // function mouseDragged(){
+// //     let canvas = document.getElementById("mycanvas");
+// //     // var ctx = canvas.getContext("2d");
+// //     // ctx.fillStyle = "#FF0000";
+// //     // ctx.fillRect(0, 0, 150, 75);
+// //     let type = _("#pen-pencil").checked?"pencil":"brush";
+// //     let size = parseInt(_("#pen-size").value);
+// //     let color = _("#pen-color").value;
+// //     fill(color);
+// //     stroke(color);
+// //     if(type == "pencil"){
+// //         line(pmouseX, pmouseY, mouseX, mouseY);
+//     } else {
+//         ellipse(mouseX, mouseY, size, size);
+//     }
+// }
