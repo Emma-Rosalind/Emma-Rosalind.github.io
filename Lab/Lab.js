@@ -1,17 +1,22 @@
 //general variables
 var timerStart = 0;
 var max = 0; //- max of current box
+var min = 99;
 var average = 0;
 var SetDone = false;
 var n = [3,5,9,25];
 var cur = 0;
-var repeats = 2;   //can change at will
+var repeats = 4;   //can change at will
 var repeatDone = 0;
 var trials = [];
 var trial = {};
+var id = "";
 
 //Sets up on go press
 function Start(){
+    //set id
+    id = Date.now().toString().substring(8); 
+ 
     document.getElementById("go").classList.add("hidden");
     //see what they are starting
     
@@ -41,13 +46,27 @@ function setGraph(n){
 
     var values = ``;
     for(var i = 0; i < n ; i++){
-        raw += " <tr ><td onclick='submitGraph("+ arr[i] +")' style='--size:0."+arr[i]+";'></td></tr> ";
+        /*var value = Math.random() * 0xFF | 0;
+        var grayscale = (value << 16) | (value << 8) | value;
+        var randomColor = '#' + grayscale.toString(16);
+        while(randomColor.length < 7){
+            randomColor = randomColor + "0";
+        }*/
+        const randomColor = "#dddddd";
+        raw += " <tr ><td onclick='submitGraph("+ arr[i] +")' style='--size:0."+arr[i]+"; background:" + randomColor + "; outline: 1px solid black; '></td></tr> ";
         values += `${arr[i].toString()},`;
         if(arr[i] > max){
             max = arr[i];
         }
+        if(arr[i] < min){
+            min = arr[i];
+        }
     }
-    trial["repetition"] = repeatDone;
+
+    const repetition = "n" + n.toString() + "-" + repeatDone;
+
+    trial["id"] = id;
+    trial["repetition"] = repetition;
     trial["# values"] = n;
     trial["values"] = values;
     content.innerHTML = raw;
@@ -59,22 +78,22 @@ function setGraph(n){
 function submitGraph(num){
     //stop timer and save
     var time = Date.now() - timerStart;
-    if(num == max){
-        console.log("correct");
-    }else{                          //TODO: do something with this info
-        console.log("wrong");
-    }
+
+    //calculate error
+    const error = calculateError(num, max, min, max);
 
     //collect data
     trial["method"] = "graph";
     trial["correct answer"] = max;
-    trial["answer"] = num;
+    trial["selected"] = num;
+    trial["error"] = error;
     trial["time (ms)"] = time;
 
     //do stuff
     document.getElementById("bar-body").innerHTML="";
     repeatDone++;
     max = 0;
+    min = 99;
     //check and call next graph
     if(repeatDone == repeats){
         cur++;
@@ -98,12 +117,17 @@ function submitGraph(num){
     }
 }
 
+function calculateError(selected, correct, min, max){
+    return (Math.abs(correct - selected)/(max - min)).toFixed(5);
+}
+
 // print something to user
 function Done(){
     document.getElementById("numbox").classList.add("hidden");
+    document.getElementById("box").classList.add("hidden");
     var content = document.getElementById("left-col");
     
-    let raw = "<table border='1'><tr>";
+    let raw = "<div><table border='1'><tr>";
     for(const key in trials[0]){
         raw += "<th border='1'>"+key+"</th>";
     }
@@ -117,9 +141,24 @@ function Done(){
         }
         raw += "</tr>";
     }
-    raw += "</table>";
+    raw += "</table></div>";
     content.innerHTML = raw;
-    alert("both rounds done");
+    document.getElementById("inst").classList.remove("d-flex");
+    document.getElementById("inst").classList.remove("justify-content-center");
+
+    var text = `<div >Your ID is ${id} please complete our survey. <br> <button class="btn btn-light" onclick="openSurvey()">Survey</button> </div> <br>`
+    text += "<div '>Then copy the data below and paste it (right click > paste special > values only) <br> in the next available row of the linked spreadsheet. <br> <button class='btn btn-light' onclick='openSpreadsheet()'>Spreadsheet</button> </div>"
+    document.getElementById("inst").innerHTML = text;
+}
+
+function openSurvey() {
+    window.open(
+      "https://forms.gle/GzMayYFnBEfzc1X17", "_blank");
+}
+
+function openSpreadsheet() {
+    window.open(
+      "https://docs.google.com/spreadsheets/d/14UTh4oD4H6qyE2y6nXBJnJ-ydEif6HWxcGzEmNFnS-g/edit#gid=0", "_blank");
 }
 
 //puts numbers in the box
@@ -133,7 +172,7 @@ function setNumbers(n){
     if(n == 3){
         content.classList.add("smallNum");
     }else if (n == 5){
-        //content.classList.add("medNum");  //needs more work for formatting
+        //content.classList.add("medNum");  
     }else if (n == 25){
         content.classList.add("largeNum");
         content.classList.remove("smallNum");
@@ -154,8 +193,15 @@ function setNumbers(n){
         if(arr[i] > max){
             max = arr[i];
         }
+        if(arr[i] < min){
+            min = arr[i];
+        }
     }
-    trial["repetition"] = repeatDone;
+
+    const repetition = "n" + n.toString() + "-" + repeatDone;
+
+    trial["id"] = id;
+    trial["repetition"] = repetition;
     trial["# values"] = n;
     trial["values"] = values;
     content.innerHTML = raw;
@@ -167,22 +213,22 @@ function setNumbers(n){
 function submitNums(num){
     //stop timer and save
     var time = Date.now() - timerStart;
-    if(num == max){
-        console.log("correct");
-    }else{                          //TODO: do something with this info
-        console.log("wrong");
-    }
+
+    //calculate error
+    const error = calculateError(num, max, min, max);
 
     //collect data
     trial["method"] = "numbers";
     trial["correct answer"] = max;
-    trial["answer"] = num;
+    trial["selected"] = num;
+    trial["error"] = error;
     trial["time (ms)"] = time;
 
     //do stuff
     document.getElementById("numbox").innerHTML="";
     repeatDone++;
     max = 0;
+    min = 99;
     //check and call next graph
     if(repeatDone == repeats){
         cur++;

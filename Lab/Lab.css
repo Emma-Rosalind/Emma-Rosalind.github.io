@@ -1,3 +1,16 @@
+button{
+    width: 200px;
+}
+
+#left-col{
+    text-align: center
+}  
+#inst button{
+    text-align: center;
+    width: 200px;
+    border: 1px solid lightslategray;
+    font-size: 16px;
+}
 #box{
     position: absolute;
     top: 200px;
@@ -12,7 +25,7 @@
     border: black 2px solid;
     width: 400px;
     height: 400px;
-    
+    text-align: center;
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
@@ -20,7 +33,7 @@
 
 .nums{
     padding: 4px;
-    margin: 10px 30px;
+    margin: 16px 20px;
     font-size: 1.5rem; 
     display: inline-block;
 }
@@ -38,6 +51,8 @@
 
 #inst{
     text-align: center;
+    font-size: 1em;
+    font-family: Lucida Console;
 }
 
 button{
