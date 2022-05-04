@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ms. Brill</title>
+    <link rel="stylesheet" href="game.css">
+    <script src="game.js"></script>
+  </head>
+  <body>
+
+  <div id = "all">
+  <div id = "frame" class = "normal">
+
+      <div id = "talkstart"  class = "hidden" onclick="talkStart()"> </div>
+      <div id = "talksimon"  class = "hidden" onclick="talkSimon()"> </div>
+      <div id = "talkpaul"  class = "hidden" onclick="talkPaul()"> </div>
+      <div id = "talkbarb"  class = "hidden" onclick="talkBarb()"> </div>
+      <div id = "stoppaul"  class = "hidden" > </div>
+      <div id = "countpaul"  class = "hidden" onclick="endPaul2()"> </div>
+      <div id = "talksatan"  class = "hidden" onclick="talkSatan()"> </div>
+
+       <div id = "endscreen"  class = "hidden" > </div>
+
+
+      <div id = "battleGif"  class = "hidden" >
+       <img src="images/battle.gif" alt="battle start" >
+      </div>
+
+      <div id = "battleArea"  class = "hidden" >
+           <img src="images/battle2.gif" alt="battle start" >
+           <div id = "battlescreen" >
+
+             <div id = "myhp" > 150/150</div>
+                <div id = "enemyhp" > 200/200</div>
+
+                <div class = "red">
+                     <div id = "mydamage" class = "hidden">  </div>
+
+                     <div id = "enemydamage" class = "hidden"> </div>
+                </div>
+            </div>
+
+            <div id = "battletext" class = "hidden" > </div>
+           <div id = "battlebox" >
+
+             <br>
+           
+            <span class = "mer" onmouseover="over('attack')">Attack</span>
+
+
+            <br>
+            <br>
+            <span class = "mer" onmouseover="over('item')">Item</span>
+            
+
+            </div>
+
+
+             <div  id = "battlebox2" >
+               <div id = "attack" >
+                 <div id = "a1" onclick=" attack('1')" onmouseover="line('a1')" onmouseout= "line2('a1')">  Tackle <span id ="p1">15</span>/ 15 PP </div><br>
+                   <div id = "a2" onclick=" attack('2')" onmouseover="line('a2')" onmouseout= "line2('a2')">  Light Ball <span id ="p2">5</span>/ 5 PP </div><br>
+                    <div id = "a3" onclick=" attack('3')" onmouseover="line('a3')" onmouseout= "line2('a3')">  Spirit Beam <span id ="p3">2</span>/ 2 PP </div><br>
+               </div>
+
+               <div id = "item" class = "hidden" >
+                      <div class = "hidden" id = "heal" onclick=" attack('11')" onmouseover="line('heal')" onmouseout= "line2('heal')">Health Potion<br><br></div>
+                      <div class = "hidden" id = "po" onclick=" attack('22')" onmouseover="line('po')" onmouseout= "line2('po')">Poison<br><br></div>
+                      <div class = "hidden" id = "holy" onclick=" attack('33')" onmouseover="line('holy')" onmouseout= "line2('holy')">Holy water<br><br></div>
+                      <div class = "hidden" id = "sup" onclick=" attack('44')" onmouseover="line('sup')" onmouseout= "line2('sup')">Super Potion</div>
+               </div>
+             </div>
+
+
+      </div>
+
+      <div id = "menu" >
+
+		  <div id = "start"  onclick="changeVisibility('menu');talkStart()"></div>
+      </div>
+
+      <div id = "mainarea">
+          <div id = "item1" onclick="itemGet('Obtained family picture!', 'item1')" onmouseover="hover('Looks like a family picture...')" onmouseout= "hover('...')"><img src="images/photo.png" alt="brill" ></div>
+      </div>
+
+      <div class = "hidden" id = "leftarea">
+
+          <div id = "heal2" onclick="itemGet('Obtained a health potion!', 'heal2')" onmouseover="hover('A flask of red liquid...')" onmouseout= "hover('...')"><img src="images/health.png" alt="brill" ></div>
+          <div id = "simonghost" class="ghost" onclick="talkSimon()">  </div>
+          <div id = "paulghost"  class="ghost" onclick="talkPaul()">  </div>
+
+      </div>
+
+      <div class = "hidden" id = "toparea">
+
+           <div id = "holy2"  onclick="itemGet('Obtained holy water!', 'holy2')" onmouseover="hover('A glass of clear liquid...')" onmouseout= "hover('...')"><img src="images/holy.png" alt="brill" ></div>
+           <div id = "clicker"  class = "hidden" onclick="battleStart()"> </div>
+           <div id = "item2" onclick="itemGet('Obtained razor blade!', 'item2')" onmouseover="hover('Something shiny...')" onmouseout= "hover('...')"><img src="images/blade.png" alt="brill" ></div>
+      </div>
+
+      <div class = "hidden" id = "rightarea">
+
+          <div id = "barbghost" class="ghost" onclick="talkBarb()"> </div>
+           <div id = "po2"  onclick="itemGet('Obtained poison!', 'po2')" onmouseover="hover('Looks dangerous...')" onmouseout= "hover('...')"><img src="images/po.png" alt="brill" ></div>
+           <div id = "sup2"  onclick="itemGet('Obtained a super potion!', 'sup2')" onmouseover="hover('A colorfull flask')" onmouseout= "hover('...')"><img src="images/sup.png" alt="brill" ></div>
+      </div>
+
+      <div id = "nametag">
+          name
+      </div>
+
+      <div id = "textbox"> </div>
+      
+      <div id = "choo" class = "hidden">
+          <div id = "cho1" class = "cho" onclick="endPaul('false')">Malabar</div>
+          <div id = "cho2" class = "cho" onclick="endPaul('false')">Daffodil</div>
+          <div id = "cho3" class = "cho" onclick="endPaul('true')">Sansovino</div>
+      </div>
+
+	  <div id = "RightArrow" onclick="enterRightRoom()"></div>
+      
+
+	  <div id = "TopArrow" onclick="enterTopRoom()"></div>
+      
+
+	  <div id = "LeftArrow" onclick="enterLeftRoom()"></div>
+      
+
+	  <div id = "BackArrow" class = "hidden" onclick="returnMainArea()"></div>
+      
+
+
+
+
+
+      <div class = "hidden" id = "Brill"> <img src="images/brill.png" alt="brill" > </div>
+
+      <div class = "hidden" id = "Sergeant"><img src="images/sarg.png" alt="sarg" ></div>
+
+      <div class = "hidden" id = "Paul"><img src="images/paul.png" alt="paul" > </div>
+
+      <div class = "hidden" id = "Barber"><img src="images/barber.png" alt="paul" ></div>
+      
+      <div class = "hidden" id = "Simon"><img src="images/simon.png" alt="paul" ></div>
+       <div class = "hidden" id = "Voice"></div>
+
+  </div>
+  </div>
+    </body>
+</html>

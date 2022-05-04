@@ -1952,7 +1952,7 @@ header .header-logo a {
 	height: 100%;
 	background: #EBEBEB;
 	width: 50%;
-	background-image: url(../images/profile-bg.jpg);
+	background-image: url(../images/plant.jpg);
 	background-repeat: no-repeat;
 	background-position: center;
 	-webkit-background-size: cover;
@@ -1992,7 +1992,7 @@ header .header-logo a {
 }
 
 .about-profile p.lead {
-	color: #636363;
+	color: #2f2f2f;
 }
 
 .about-profile .about-profile-bg {
@@ -2180,7 +2180,7 @@ header .header-logo a {
 	min-height: 800px;
 	position: relative;
 	padding: 12rem 0 9.6rem;
-	color: rgba(255, 255, 255, 0.3);
+	color: rgba(219, 219, 219, 0.743);
 }
 
 #skills .overlay {
@@ -2466,6 +2466,8 @@ header .header-logo a {
 .bricks-wrapper .item-wrap {
 	position: relative;
 	overflow: hidden;
+	width: 435px;
+	border-radius: 5px;
 }
 
 .bricks-wrapper .item-wrap .overlay {
@@ -2473,6 +2475,7 @@ header .header-logo a {
 }
 
 .bricks-wrapper .item-wrap .overlay img {
+	height: 300px;
 	vertical-align: bottom;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;

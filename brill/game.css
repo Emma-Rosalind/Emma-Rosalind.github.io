@@ -1,0 +1,392 @@
+.hidden{
+  display:none;
+}
+
+.unhidden{
+  display:block;
+}
+
+.normal{
+font-family:Arial, Helvetica, sans-serif;
+}
+
+.red{
+color:red;
+font-weight: bold;
+}
+
+#textbox, #battletext,  #nametag, #battlebox2, #battlebox{
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+ 
+ #all{
+  position: relative;
+  width:100%;
+ }
+
+ #frame{
+    position: relative;
+ height: 700px;
+ width: 900px;
+ margin: auto;
+
+ }
+ #battleGif{
+  position: absolute;
+ height: 700px;
+ width: 900px;
+ z-index: 12;
+ 
+ }
+ #battleArea {
+  position: absolute;
+ height: 700px;
+ width: 900px;
+ background-color: white;
+ z-index: 12;
+ }
+
+  #talkstart, #talksimon, #talkbarb, #talkpaul, #stoppaul, #countpaul, #talksatan{
+ position: absolute;
+ height: 700px;
+ width: 900px;
+ z-index: 12;
+  }
+
+ #textbox{
+ position: absolute;
+ height: 150px;
+ width: 900px;
+ top: 550px;
+ z-index: 8;
+ padding:20px;
+ background-image: url("images/box.png");
+ }
+
+  #battletext{
+ position: absolute;
+ height: 150px;
+ width: 900px;
+ top: 550px;
+ border: 2px solid black;
+ padding:20px;
+ background-color: white;
+ z-index: 12;
+ }
+  #nametag{
+ position: absolute;
+ height: 45px;
+ width: 95px;
+ top: 515px;
+ left:20px;
+ background-color: #bcc3e0;
+ border: 3px solid #404c7c;
+ padding-left: 10px;
+ padding-top: 7px;
+  z-index: 7;
+}
+
+.cho{
+ position: absolute;
+ height: 50px;
+ width: 300px;
+ background-color: #bcc3e0;
+ border: 3px solid #404c7c;
+ left:325px;
+ text-align: center;
+ line-height: 50px;
+  white-space: nowrap;
+   z-index: 14;
+}
+
+#cho1{
+  position: absolute;
+  top:150px;
+}
+
+#cho2{
+  position: absolute;
+ top:225px;
+}
+
+#cho3{
+  position: absolute;
+ top:300px;
+}
+
+ #battlebox{
+ position: absolute;
+ height: 150px;
+ width: 400px;
+ top: 550px;
+ padding:20px;
+ border: 2px solid black;
+ text-align: center;
+ }
+
+#battlebox2{
+ position: absolute;
+ height: 150px;
+ width: 500px;
+ left: 400px;
+ top: 550px;
+ padding:20px;
+ border: 2px solid black;
+
+}
+
+#myhp{
+  position: absolute;
+ height: 70px;
+ width: 150px;
+ top: 425px;
+ left: 420px;
+}
+
+#enemyhp{
+  position: absolute;
+ height: 70px;
+ width: 150px;
+ top: 100px;
+ left:265px;
+}
+
+#mydamage{
+  position: absolute;
+ height: 100px;
+ width: 70px;
+ top: 425px;
+ left: 420px;
+  animation: floatBubble2 2s 1  normal ease-out;
+}
+
+#enemydamage{
+  position: absolute;
+ height: 100px;
+ width: 70px;
+ top: 100px;
+ left:265px;
+   animation: floatBubble 2s 1  normal ease-out;
+}
+
+@keyframes floatBubble {
+    0% {
+        top:100px;
+    }
+    100% {
+        top: 40px;
+    }
+}
+
+@keyframes floatBubble2 {
+    0% {
+        top:425px;
+    }
+    100% {
+        top: 360px;
+    }
+}
+
+ #mainarea, #battlescreen{
+ position: absolute;
+ top: 0px;
+ left:0px;
+ height: 550px;
+ width: 900px;
+}
+
+#mainarea{
+
+  background-image: url("images/main.png");
+}
+ #endscreen{
+ position: absolute;
+ height: 700px;
+ width: 900px;
+  z-index: 44;
+}
+
+#leftarea{
+ position: absolute;
+ height: 550px;
+ width: 900px;
+ background-image: url("images/left.png");
+}
+#toparea{
+ position: absolute;
+ height: 550px;
+ width: 900px;
+ background-image: url("images/top.png");
+}
+#rightarea{
+ position: absolute;
+ height: 550px;
+ width: 900px;
+ background-image: url("images/right.png");
+}
+
+#menu{
+ position: absolute;
+ height: 700px;
+ width: 900px;
+ background-image: url("images/menu.png");
+ z-index: 10;
+}
+
+#start{
+ position: absolute;
+ top:485px;
+ left:345px;
+ height: 60px;
+ width: 190px;
+ z-index: 11;
+}
+
+#RightArrow{
+ position: absolute;
+
+ width: 68px;
+  height:60px;
+  background-image: url("images/righta.png");
+ top: 250px;
+ left:800px;
+}
+
+#LeftArrow{
+ position: absolute;
+ height: 60px;
+ width: 68px;
+  background-image: url("images/lefta.png");
+ top: 250px;
+}
+
+#TopArrow{
+ position: absolute;
+ height: 68px;
+ width: 60px;
+  background-image: url("images/upa.png");
+ left: 375px;
+}
+
+
+#BackArrow {
+ position: absolute;
+ height: 68px;
+ width: 60px;
+  background-image: url("images/downa.png");
+ left: 375px;
+ top: 470px;
+}
+
+#item1{
+ position: absolute;
+ height: 30px;
+ width: 20px;
+ left: 730px;
+ top: 55px;
+ -ms-transform: rotate(20deg); /* IE 9 */
+    -webkit-transform: rotate(20deg); /* Safari */
+    transform: rotate(20deg);
+}
+
+#item2{
+ position: absolute;
+ height: 30px;
+ width: 20px;
+ left: 200px;
+ top: 510px;
+}
+
+
+#Brill{
+ position: absolute;
+ height: 250px;
+ top: 300px;
+ left: 50px;
+ width: 150px;
+  z-index: 5;
+}
+
+#Paul, #Sergeant, #Barber, #Simon{
+ position: absolute;
+ height: 250px;
+ top: 300px;
+ right: 50px;
+ width: 150px;
+ z-index: 5;
+}
+
+#Barber{
+ height: 250px;
+ top: 320px;
+}
+
+#clicker{
+ position: absolute;
+ height: 250px;
+ top: 100px;
+ right: 200px;
+ width: 150px;
+ background-image: url("images/portal.png");
+ z-index: 5;
+}
+
+.ghost{
+height:166px;
+width:72px;
+background-image: url("images/ghost.png");
+z-index: 5;
+}
+
+#simonghost{
+position: absolute;
+top:100px;
+left:100px;
+}
+
+#paulghost{
+position: absolute;
+top:350px;
+left:550px;
+}
+
+#barbghost{
+position: absolute;
+top:100px;
+left:100px;
+}
+
+#heal2{
+position: absolute;
+top:440px;
+left:587px;
+
+}
+
+#po2{
+position: absolute;
+top:400px;
+left:600px;
+
+}
+
+#holy2{
+position: absolute;
+top:375px;
+left:15px;
+
+}
+
+#sup2{
+position: absolute;
+top:400px;
+left:400px;
+}
+
+.mer{
+ font-size: 150%;
+}
+
+
